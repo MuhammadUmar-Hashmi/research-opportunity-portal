@@ -1,0 +1,191 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "name": "Research Opportunity Portal API",
+    "description": "Postman collection covering all 8 demonstration requests required by Assignment 1 for the University Research Opportunity Portal.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Opportunity 1 (AI & ML)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Deep Learning for Clinical Diagnosis\",\n  \"description\": \"Investigating multi-modal transformer architectures for medical image segmentation and patient survival prediction.\",\n  \"research_area\": \"Machine Learning & Healthcare\",\n  \"faculty_name\": \"Dr. Sarah Khan\",\n  \"department\": \"Computer Science\",\n  \"required_skills\": \"Python, PyTorch, Linear Algebra, Git\",\n  \"available_positions\": 2,\n  \"deadline\": \"2026-12-15\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "opportunities"]
+        }
+      }
+    },
+    {
+      "name": "1b. Create Opportunity 2 (Cybersecurity)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Zero-Trust Network Protocol Verification\",\n  \"description\": \"Formal verification and simulation of zero-trust architecture in distributed edge computing environments.\",\n  \"research_area\": \"Network Security\",\n  \"faculty_name\": \"Dr. Tariq Mahmood\",\n  \"department\": \"Telecommunications\",\n  \"required_skills\": \"C++, Wireshark, Linux, Socket Programming\",\n  \"available_positions\": 3,\n  \"deadline\": \"2026-11-30\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "opportunities"]
+        }
+      }
+    },
+    {
+      "name": "1c. Create Opportunity 3 (Robotics)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Autonomous Drone Navigation in GPS-Denied Environments\",\n  \"description\": \"Developing visual SLAM pipelines and obstacle avoidance algorithms for quadcopters.\",\n  \"research_area\": \"Robotics & Automation\",\n  \"faculty_name\": \"Dr. Ayesha Malik\",\n  \"department\": \"Electrical & Computer Engineering\",\n  \"required_skills\": \"ROS2, OpenCV, C++, Python\",\n  \"available_positions\": 1,\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "opportunities"]
+        }
+      }
+    },
+    {
+      "name": "2. Retrieve All Research Opportunities",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "opportunities"]
+        }
+      }
+    },
+    {
+      "name": "3. Retrieve One Research Opportunity (ID 1)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "opportunities", "1"]
+        }
+      }
+    },
+    {
+      "name": "4. Update Research Opportunity (ID 1)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Advanced Deep Learning for Clinical Diagnosis\",\n  \"required_skills\": \"Python, PyTorch, MONAI, Git\",\n  \"available_positions\": 3,\n  \"deadline\": \"2026-12-31\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "opportunities", "1"]
+        }
+      }
+    },
+    {
+      "name": "5. Change Status from Open to Closed (ID 1)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Closed\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "opportunities", "1"]
+        }
+      }
+    },
+    {
+      "name": "6. Delete Research Opportunity (ID 2)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/2",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "opportunities", "2"]
+        }
+      }
+    },
+    {
+      "name": "7. Demonstrate 404 Not Found (Request Deleted ID 2)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities/2",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "opportunities", "2"]
+        }
+      }
+    },
+    {
+      "name": "8. Demonstrate Validation Error (Missing Required Fields)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Incomplete Research Proposal\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/opportunities",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "opportunities"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}

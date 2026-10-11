@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 from routes import opportunities_bp
@@ -7,9 +7,13 @@ from routes import opportunities_bp
 # Load environment variables
 load_dotenv()
 
-app = Flask(__name__)
+# Determine frontend static directory path
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "frontend"))
 
-# Enable CORS for all routes (allows frontend to connect)
+app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path="")
+
+# Enable CORS for all routes
 CORS(app)
 
 # Register API routes under /api
@@ -17,8 +21,11 @@ app.register_blueprint(opportunities_bp, url_prefix="/api")
 
 
 @app.route("/", methods=["GET"])
-def home():
-    """Root endpoint to check if API is running."""
+def index():
+    """Serve frontend index.html for browsers, or API info for JSON clients."""
+    accept_header = request.headers.get("Accept", "")
+    if "text/html" in accept_header and os.path.exists(os.path.join(FRONTEND_DIR, "index.html")):
+        return send_from_directory(FRONTEND_DIR, "index.html")
     return jsonify(
         {
             "message": "Research Opportunity Portal API is online",
